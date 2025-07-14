@@ -8,12 +8,13 @@ export default function HomePage() {
   const [roomID, setRoomID] = useState("");
   const router = useRouter();
 
-  const joinRoom = () => {
-    if (roomID.trim() !== "") {
+  const handleJoin = () => {
+    if (roomID.trim()) {
       router.push(`/room/${roomID}`);
+    } else {
+      alert("Please enter a Room ID.");
     }
   };
-
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-950 text-white space-y-6">
       <motion.h1
@@ -42,7 +43,7 @@ export default function HomePage() {
           className="px-4 py-3 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-white w-64"
         />
         <button
-          onClick={joinRoom}
+          onClick={handleJoin}
           className="px-5 py-3 bg-yellow-600 hover:bg-yellow-700 rounded text-white font-semibold transition"
         >
           Join Meeting

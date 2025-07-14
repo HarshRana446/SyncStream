@@ -26,11 +26,12 @@ export default function MeetingRoom() {
       <div className="flex justify-between items-center px-6 py-4 bg-gray-900 border-b border-gray-800 shadow">
         <h2 className="text-2xl font-bold tracking-wide">🎥 SyncStream — Room: <span className="text-yellow-400">{roomID}</span></h2>
         <button
-          onClick={leaveMeeting}
-          className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded transition"
+          onClick={() => window.location.href = "/"}
+          className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700"
         >
-          Leave Meeting
+          🔙 Leave Room
         </button>
+
       </div>
 
       {/* Main Area */}
