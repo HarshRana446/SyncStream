@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
+import VideoPlayer from "@/components/VideoPlayer";
 
 export default function MeetingRoom() {
   const { roomID } = useParams();
@@ -11,9 +12,11 @@ export default function MeetingRoom() {
   const [emotion, setEmotion] = useState("Waiting...");
 
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-      if (userVideo.current) userVideo.current.srcObject = stream;
-    });
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        if (userVideo.current) userVideo.current.srcObject = stream;
+      });
   }, []);
 
   const leaveMeeting = () => {
@@ -24,14 +27,22 @@ export default function MeetingRoom() {
     <div className="flex flex-col h-screen bg-gray-950 text-white">
       {/* Top Bar */}
       <div className="flex justify-between items-center px-6 py-4 bg-gray-900 border-b border-gray-800 shadow">
-        <h2 className="text-2xl font-bold tracking-wide">🎥 SyncStream — Room: <span className="text-yellow-400">{roomID}</span></h2>
+        <h2 className="text-2xl font-bold tracking-wide">
+          🎥 SyncStream — Room:{" "}
+          <span className="text-yellow-400">{roomID}</span>
+        </h2>
+        <div className="flex items-center justify-between bg-gradient-to-r from-purple-700 to-indigo-700 p-3 rounded-xl shadow-md mb-4">
+          <h1 className="text-white text-xl font-semibold flex items-center gap-2">
+            🎥 Video Stream Area
+          </h1>
+        </div>
+
         <button
-          onClick={() => window.location.href = "/"}
+          onClick={() => (window.location.href = "/")}
           className="px-4 py-2 bg-gray-800 rounded hover:bg-gray-700"
         >
           🔙 Leave Room
         </button>
-
       </div>
 
       {/* Main Area */}
@@ -55,13 +66,20 @@ export default function MeetingRoom() {
           </div>
 
           <div className="text-lg mt-2">
-            😊 Emotion: <span className="font-bold text-yellow-400">{emotion}</span>
+            😊 Emotion:{" "}
+            <span className="font-bold text-yellow-400">{emotion}</span>
           </div>
 
           <div className="flex space-x-4 mt-4">
-            <button className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded shadow transition">Share Screen</button>
-            <button className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded shadow transition">Record</button>
-            <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded shadow transition">Stop</button>
+            <button className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 rounded shadow transition">
+              Share Screen
+            </button>
+            <button className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded shadow transition">
+              Record
+            </button>
+            <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded shadow transition">
+              Stop
+            </button>
           </div>
         </div>
 
