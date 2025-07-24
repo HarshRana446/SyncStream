@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import VideoPlayer from "@/components/VideoPlayer";
+
 
 export default function MeetingRoom() {
   const { roomID } = useParams();
   const router = useRouter();
   const userVideo = useRef<HTMLVideoElement>(null);
   const partnerVideo = useRef<HTMLVideoElement>(null);
-  const [emotion, setEmotion] = useState("Waiting...");
+
 
   useEffect(() => {
     navigator.mediaDevices
@@ -18,10 +18,6 @@ export default function MeetingRoom() {
         if (userVideo.current) userVideo.current.srcObject = stream;
       });
   }, []);
-
-  const leaveMeeting = () => {
-    router.push("/");
-  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-950 text-white">
@@ -67,7 +63,7 @@ export default function MeetingRoom() {
 
           <div className="text-lg mt-2">
             😊 Emotion:{" "}
-            <span className="font-bold text-yellow-400">{emotion}</span>
+            <span className="font-bold text-yellow-400"></span>
           </div>
 
           <div className="flex space-x-4 mt-4">
